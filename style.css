@@ -1,0 +1,624 @@
+/* --- Base Styles & Variables --- */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --border-color: #dee2e6;
+    --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer sticks to bottom */
+}
+
+main {
+    flex-grow: 1; /* Allow main content to take up available space */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center content */
+    width: 100%;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.8em;
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    animation: slideInDown 0.8s ease-out; /* Example animation */
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+img.responsive-image {
+    max-width: 100%; /* Requirement */
+    height: auto;    /* Requirement */
+    display: block;  /* Prevent extra space below image */
+    margin: 1em 0;
+}
+
+/* --- Header & Navigation (Flexbox) --- */
+header {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Push logo left, links right */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    color: var(--light-color);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex; /* Use Flexbox for nav items */
+}
+
+.nav-links li {
+    margin-left: 20px; /* Spacing between links */
+}
+
+.nav-links a {
+    color: var(--light-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active /* Add 'active' class via JS if needed, or style current page link */ {
+    background-color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 15px;
+    margin-top: auto; /* Push footer to bottom */
+}
+
+/* --- Home Page Specific Styles --- */
+.hero {
+    background: linear-gradient(rgba(0, 123, 255, 0.7), rgba(0, 86, 179, 0.7)), url('images/hero-placeholder.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease-in-out; /* Animation requirement */
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    color: white; /* Override default h1 color */
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+}
+
+.cta-button {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.cta-button:hover {
+    background-color: var(--light-color);
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.home-content-wrapper {
+    display: flex; /* Requirement: Flexbox side-by-side layout */
+    gap: 30px; /* Space between flex items */
+    margin-top: 20px;
+}
+
+.intro-content {
+    flex: 3; /* Take up more space */
+    background-color: #fdfdfd;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.sidebar {
+    flex: 1; /* Take up less space */
+    background-color: var(--light-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.sidebar h3 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5em;
+}
+
+.sidebar ul li {
+    margin-bottom: 0.5em;
+}
+
+/* --- Services Page Specific Styles (Grid) --- */
+.services-page h1, .services-page > p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.services-grid {
+    display: grid; /* Requirement: Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    gap: 25px;
+}
+
+.service-card {
+    border: 1px solid var(--border-color); /* Requirement */
+    border-radius: 8px;
+    padding: 25px; /* Requirement */
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Requirement: transition */
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Requirement: hover effect */
+    box-shadow: var(--hover-shadow); /* Requirement: hover effect */
+}
+
+.service-card .service-icon {
+    max-width: 60px; /* Adjust as needed */
+    height: auto;
+    margin-bottom: 15px;
+    /* Add filter/styles for placeholder if it's generic */
+    /* filter: invert(50%) sepia(80%) saturate(500%) hue-rotate(180deg); */
+}
+
+.service-card h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+/* --- Contact Page Specific Styles --- */
+.contact-page h1, .contact-page > p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Makes label take full width */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%; /* Responsive form fields */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Requirement: focus transition */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color); /* Requirement: focus style */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Requirement: focus style */
+    outline: none; /* Remove default outline */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+}
+
+.submit-button {
+    display: block; /* Make button take full width */
+    width: 100%;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform 0.1s ease; /* Requirement: button hover */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.submit-button:active {
+    transform: scale(0.98); /* Subtle press effect */
+}
+
+/* --- Animations --- */
+@keyframes fadeIn { /* Requirement: @keyframes animation */
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Media Queries (Responsive Design) --- */
+
+/* Requirement: Breakpoint 1 (Large Tablets / Small Laptops) */
+@media (max-width: 1024px) {
+    h1 { font-size: 2.2em; }
+    .hero h1 { font-size: 2.5em; }
+    .services-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .home-content-wrapper { gap: 20px; }
+}
+
+/* Requirement: Breakpoint 2 (Tablets) */
+@media (max-width: 768px) {
+    h1 { font-size: 2em; }
+    .hero h1 { font-size: 2.2em; }
+    .hero p { font-size: 1.1em; }
+
+    .navbar { flex-direction: column; align-items: flex-start;}
+    .nav-links { margin-top: 10px; width: 100%; justify-content: space-around; }
+    .nav-links li { margin-left: 0; } /* Remove left margin when stacked/wrapped */
+
+    .home-content-wrapper {
+        flex-direction: column; /* Stack intro and sidebar */
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust minmax */
+        gap: 20px;
+    }
+    .service-card { padding: 20px; }
+
+    .contact-form { padding: 20px; }
+}
+
+/* Requirement: Breakpoint 3 (Mobile Phones) */
+@media (max-width: 480px) {
+    body { font-size: 15px; } /* Adjust base font size */
+    h1 { font-size: 1.8em; }
+    .hero { padding: 40px 15px; }
+    .hero h1 { font-size: 2em; }
+    .hero p { font-size: 1em; }
+    .cta-button { padding: 10px 20px; font-size: 0.9em; }
+
+    .navbar { align-items: center; } /* Center items in column layout */
+    .logo { margin-bottom: 10px; }
+    .nav-links { flex-direction: column; align-items: center; }
+    .nav-links li { margin-bottom: 10px; } /* Space when vertically stacked */
+
+    .services-grid {
+        grid-template-columns: 1fr; /* Single column grid */
+        gap: 15px;
+    }
+    .service-card { padding: 15px; }
+
+    .contact-form { max-width: 95%; padding: 15px; }
+    .form-group input, .form-group textarea { padding: 10px; }
+    .submit-button { padding: 10px 15px; font-size: 1em; }
+
+    main { padding: 15px; }
+}
+
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0;           /* Lighter text */
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #1f1f1f; /* Slightly lighter dark for sections */
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar .logo a,
+body.dark-mode .nav-links a {
+    color: #e0e0e0; /* Light link color */
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active {
+    background-color: var(--primary-color); /* Keep primary color for hover/active */
+    color: white; /* Ensure text is visible */
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #5cadff; /* Lighter shade of primary for headings */
+}
+
+body.dark-mode a {
+    color: #5cadff; /* Lighter shade of primary for links */
+}
+
+body.dark-mode a:hover {
+    color: #8ecaff;
+}
+
+/* Dark Hero Section */
+body.dark-mode .hero {
+    background: linear-gradient(rgba(20, 30, 80, 0.8), rgba(10, 15, 40, 0.8)), url('images/hero-placeholder.jpg') no-repeat center center/cover; /* Darker gradient */
+    color: white;
+}
+
+body.dark-mode .hero h1 {
+    color: white; /* Keep hero h1 white */
+}
+
+body.dark-mode .cta-button {
+    background-color: var(--light-color); /* Keep button background light */
+    color: #1f1f1f; /* Dark text for light button */
+}
+
+body.dark-mode .cta-button:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+/* Dark Content/Sidebar/Cards */
+body.dark-mode .intro-content,
+body.dark-mode .sidebar,
+body.dark-mode .service-card,
+body.dark-mode .contact-form {
+    background-color: #1f1f1f;
+    border-color: #444; /* Darker border */
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar h3 {
+    border-bottom-color: #5cadff; /* Lighter primary border */
+}
+
+body.dark-mode .service-card {
+     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Subtle light shadow */
+}
+
+body.dark-mode .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1); /* More pronounced light shadow */
+}
+
+/* Dark Form Elements */
+body.dark-mode .form-group label {
+    color: #bbb; /* Lighter secondary color */
+}
+
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group input[type="email"],
+body.dark-mode .form-group textarea {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+/* Make placeholder text visible in dark mode */
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+    color: #888;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: #5cadff; /* Lighter primary focus border */
+    box-shadow: 0 0 0 3px rgba(92, 173, 255, 0.3); /* Lighter focus shadow */
+}
+
+body.dark-mode .submit-button {
+    background-color: #5cadff; /* Lighter primary button */
+    color: #121212; /* Dark text for light button */
+    font-weight: bold;
+}
+
+body.dark-mode .submit-button:hover {
+    background-color: #8ecaff;
+}
+
+/* Style the toggle button itself slightly */
+body.dark-mode #themeToggle {
+    background-color: #555; /* Darker background for button */
+    color: #f0f0f0; /* Light text */
+    border: 1px solid #777; /* Subtle border */
+}
+
+#themeToggle { /* Base style for the toggle button */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+
+/* --- FAQ Section Styling --- */
+.faq-section {
+    margin-top: 40px;
+    padding: 20px;
+    /* Optional background/border */
+    /* background-color: #f1f1f1; */
+    /* border-top: 1px solid var(--border-color); */
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.faq-item {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden; /* Contain elements */
+}
+
+.question {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-bottom: 0; /* Remove default h3 margin */
+    background-color: var(--light-color); /* Slight background difference */
+    transition: background-color 0.2s ease;
+    position: relative; /* For potential pseudo-elements */
+    color: var(--dark-color); /* Ensure text color is dark in light mode */
+}
+
+.question:hover {
+    background-color: #e9ecef;
+}
+
+/* Add an indicator */
+.question::after {
+    content: '+'; /* Plus sign */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: transform 0.2s ease;
+}
+
+/* Basic visibility toggle CSS (provided) */
+.answer {
+    display: none;
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-color); /* Slightly muted color for answer */
+    background-color: white; /* Ensure answer background */
+}
+
+.answer.visible {
+    display: block;
+}
+
+/* Change indicator when answer is visible */
+.answer.visible + .question::after, /* If answer comes first (less common) */
+.question:has(+ .answer.visible)::after /* Modern CSS: if question is followed by visible answer */
+{
+    content: '−'; /* Minus sign */
+    transform: translateY(-50%); /* Keep vertical alignment */
+}
+
+/* --- Dark Mode FAQ Adjustments --- */
+body.dark-mode .faq-section {
+     /* background-color: #1a1a1a; */
+     /* border-top: 1px solid #444; */
+}
+
+body.dark-mode .faq-item {
+    background-color: #1f1f1f;
+    border-color: #444;
+}
+
+body.dark-mode .question {
+    background-color: #2a2a2a;
+    color: #e0e0e0; /* Light text for question */
+}
+
+body.dark-mode .question:hover {
+    background-color: #333;
+}
+
+body.dark-mode .question::after {
+    color: #5cadff; /* Lighter primary color for indicator */
+}
+
+body.dark-mode .answer {
+    border-top-color: #444;
+    color: #bbb; /* Lighter secondary color for answer */
+    background-color: #1f1f1f;
+}
+
+/* Note: The :has() pseudo-class for the indicator change might not be supported in very old browsers. */
+/* A JS solution might be needed for full backward compatibility if the indicator change is critical. */
+
